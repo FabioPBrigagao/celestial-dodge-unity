@@ -1,0 +1,26 @@
+fileFormatVersion: 2
+guid: bb408519e20efb74fa3dbb7a0dff254e
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - greenBoss: {fileID: 9073869294377001656, guid: 4e514cccf2818b3488ff99cb19a03116,
+      type: 3}
+  - greenEnemy: {instanceID: 0}
+  - asteroidOne: {instanceID: 0}
+  - asteroidTwo: {instanceID: 0}
+  - asteroidThree: {instanceID: 0}
+  - missile: {instanceID: 0}
+  - warningSign: {instanceID: 0}
+  - greenNuke: {instanceID: 0}
+  - explosion: {instanceID: 0}
+  - enemyBullet: {instanceID: 0}
+  - playerBullet: {instanceID: 0}
+  - flash: {instanceID: 0}
+  - defaultSprite: {instanceID: 0}
+  - bonusScore: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
