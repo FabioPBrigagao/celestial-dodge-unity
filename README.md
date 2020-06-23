@@ -1,6 +1,6 @@
-# match3-test
+# celestial-dodge-unity
 
-This repository is a Unity project folder that contains a finished match3 game.
+This repository is a Unity project folder that contains a playable game. It can be played in both PC/Mac and mobile.
 
 ## Unity Version
 
@@ -18,12 +18,13 @@ This is a Unity project folder, so the game will run under the Unity editor unle
 
 - Use your left mouse click to navigate through the game.
 
-Note: The game runs on a reference aspect ratio of 9:16
+Note: The game runs on a reference aspect ratio of 9:16. You can switch the build setting to iOS or Android if you wish to play in mobile. 
 
 ## Credits
 
 **Font**
 
 04B_30_ Font
+
 Yuji Oshimoto
 
