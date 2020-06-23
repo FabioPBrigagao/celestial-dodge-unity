@@ -1,6 +1,6 @@
 # celestial-dodge-unity
 
-This repository is a Unity project folder that contains a playable game. It can be played in both PC/Mac and mobile.
+Celestial Dodge is a retro-style 16-bit infinity runner spaceship game developed for both PC/Mac and mobile.  
 
 <p align="center">
   <img src="https://github.com/FabioPBrigagao/celestial-dodge-unity/blob/master/Screenshots%20and%20Gifs/title_README.png">
@@ -8,7 +8,7 @@ This repository is a Unity project folder that contains a playable game. It can 
 
 ## Unity Version
 
-The project was developed using Unity 2018.4.23f1
+This repository is a Unity project folder that contains a playable game. The project was developed using Unity 2018.4.23f1
 
 ## Getting Started
 
