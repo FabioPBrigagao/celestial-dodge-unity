@@ -40,7 +40,7 @@ public class Missile : MonoBehaviour{
     }
 
     void Update(){
-        score = SceneManagerEndless.current.GetScore();
+        score = SceneManagerEndless.current.score;
         speed = startspeed + (score / 100);
         rb.velocity = transform.right * speed;
     }
