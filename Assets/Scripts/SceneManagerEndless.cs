@@ -24,7 +24,7 @@ public class SceneManagerEndless : MonoBehaviour {
     //Waves Private Variables
     [HideInInspector]
     public int waveNumber;
-    private float countWaveDuration;
+    public float countWaveDuration;
     [HideInInspector]
     public float score;
     private int bonusScore;
@@ -126,7 +126,7 @@ public class SceneManagerEndless : MonoBehaviour {
     //Spawn random asteroids into the scene
     void Asteroids() {
         randomAsteroid = Random.Range(0, GameAssets.i.asteroidArray.Length);
-        if (timer <= 0) {
+        if (timer <= 0 && countWaveDuration > 0) {
             Vector2 topSpawnPosition = new Vector2((float)Random.Range(-ABS_MAX_X_TOP_SPAWN, ABS_MAX_X_TOP_SPAWN), spawnPos[0].position.y);
             Asteroid.Create(randomAsteroid, topSpawnPosition);
             timer = asteroidSpawnRate;
@@ -142,7 +142,7 @@ public class SceneManagerEndless : MonoBehaviour {
     }
 
     void Missiles() {
-        if (timer <= 0) {
+        if (timer <= 0 && countWaveDuration > 0) {
             float tempPosY = 0;
             if (aimPlayer == false) {
                 tempPosY = (float)Random.Range(-ABS_MAX_Y_SIDE_SPAWN, ABS_MAX_Y_SIDE_SPAWN);
