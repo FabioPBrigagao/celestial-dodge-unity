@@ -123,7 +123,6 @@ public class SceneManagerEndless : MonoBehaviour {
         }
     }
 
-    //Spawn random asteroids into the scene
     void Asteroids() {
         randomAsteroid = Random.Range(0, GameAssets.i.asteroidArray.Length);
         if (timer <= 0 && countWaveDuration > 0) {

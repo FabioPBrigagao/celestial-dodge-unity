@@ -92,7 +92,6 @@ public class PlayerController : MonoBehaviour{
         if (Input.touchCount > 0){
            if(wave == 2 || wave == 4 || wave == 0){ //Waves in which player will fire
                 Shoot();
-                Shoot();
             } 
             touch = Input.GetTouch(0);
             touchPosition = GetLocation(touch);

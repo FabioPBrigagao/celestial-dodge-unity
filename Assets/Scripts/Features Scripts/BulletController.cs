@@ -32,7 +32,8 @@ public class BulletController : MonoBehaviour{
 
         GameObject Obj = ObjPol.GetComponent<ObjectPooling>().GetObjFromPool();
         Obj.transform.position = transPos.position;
-        Obj.transform.rotation = Obj.transform.rotation;
+        if(ifplayerShooting) Obj.transform.rotation = transPos.transform.rotation;
+        else Obj.transform.rotation = Obj.transform.rotation;
         Obj.SetActive(true);
     }
 
