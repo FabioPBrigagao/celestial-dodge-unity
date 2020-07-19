@@ -26,7 +26,6 @@ public class BonusScore : MonoBehaviour{
         text.text = "+ " + bonus;
     }
 
-    //Object moves up and fades alpha
     public void Update(){
         transform.position += new Vector3(0, moveYSpeed) * Time.deltaTime;
         vanishTimer -= Time.deltaTime;

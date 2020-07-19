@@ -43,20 +43,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb408519e20efb74fa3dbb7a0dff254e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  greenBoss: {fileID: 9073869294377001656, guid: 4e514cccf2818b3488ff99cb19a03116,
-    type: 3}
-  greenEnemyShooter: {fileID: 5506769262750201615, guid: cfd0c7d95c3e03c4d94f301d22398669,
+  enemyShooter: {fileID: 5506769262750201615, guid: cfd0c7d95c3e03c4d94f301d22398669,
     type: 3}
   asteroidArray:
   - {fileID: 1705841171539464918, guid: 26dfff572eb834c45b77c51ed5ebb629, type: 3}
   - {fileID: 5156956885039426811, guid: 95bba2b6d47c4bc4db2411db151d1dc3, type: 3}
   - {fileID: 5662478481185757651, guid: bf6b8e167da0f89468be5e09f3e4efa1, type: 3}
   missile: {fileID: 902117367357000591, guid: 27e728318ae7ddb449e9ee3fa3865756, type: 3}
-  warningSign: {fileID: 3217384404631336926, guid: d994eb619cc9784449fa3276ff6cdf26,
-    type: 3}
-  greenNuke: {fileID: 2041239277356639110, guid: 3589d02dd61db3a458d119de4b21e953,
-    type: 3}
-  nukeHitParticles: {fileID: 1649121380644222467, guid: aa4eb80454a748242b4e3f344eb41d73,
+  guidedMissile: {fileID: 2041239277356639110, guid: 3589d02dd61db3a458d119de4b21e953,
     type: 3}
   explosion: {fileID: 1051807995324264565, guid: cb8111f88ef12a64fa2770df3bbe3763,
     type: 3}
