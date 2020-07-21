@@ -29,10 +29,23 @@ public static class UtilitiesMethods {
         return initial - ((initial - limit) * rate);
     }
 
-    public static Vector2 XYRandomVector3 (float xMin, float xMax, float yMin, float yMax, float z){
+    public static Vector2 XYRandomVector3(float xMin, float xMax, float yMin, float yMax, float z) {
         float x = Random.Range(xMin, xMax);
         float y = Random.Range(yMin, yMax);
         return new Vector3(x, y, z);
     }
+
+    public static int CheckEnableList(List<GameObject> list) {
+        int count = 0;
+        foreach (var obstacle in list) {
+            if (obstacle != null) {
+                if (obstacle.activeSelf) {
+                    count++;
+                }
+            }
+        }
+     return count;
+    }
+
 
 }

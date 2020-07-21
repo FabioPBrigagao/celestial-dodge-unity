@@ -5,17 +5,23 @@ using UnityEngine;
 public class Player : MonoBehaviour {
 
     public float timeBtwShoot;
-    public Transform firePos;
-    public Animator animator;
+    public Transform firePos; 
     public GameObject flyingParticles;
     public GameObject deathParticles;
-    public Camera cam;
+    
+    public LayerMask obstacleLayer;
     [HideInInspector] public bool startPos = false;
+
+    [Header("Cache Components")]
+    public Animator ani;
+    public PolygonCollider2D col;
+    public Camera cam;
 
     private Touch touch;
     private Vector2 touchPosition;
     private Vector2 mousePosition;
     private ParticleSystem.EmissionModule emission;
+
     private float deltaX;
     private float deltaY;
     private float countTimeBtwShoot;
@@ -23,7 +29,7 @@ public class Player : MonoBehaviour {
 
     private const float VERTICAL_BOUNDARIES = 15f;
     private const float HORIZONTAL_BOUNDARIES = 8f;
-    private const float FLYING_PARTICLE_EMISSION_BOOST = 300f;
+    private const float FLYING_PARTICLE_EMISSION_BOOST = 400f;
     private const int HASH_CODE_STARTGAME_ANIMATOR = -1038509842;
 
     void Awake() {
@@ -39,8 +45,8 @@ public class Player : MonoBehaviour {
     }
 
     void StartPosition() {
-        animator.SetTrigger(HASH_CODE_STARTGAME_ANIMATOR);
-        animator.applyRootMotion = true;
+        ani.SetTrigger(HASH_CODE_STARTGAME_ANIMATOR);
+        ani.applyRootMotion = true;
         startPos = true;
     }
 
@@ -91,7 +97,7 @@ public class Player : MonoBehaviour {
     void Shoot() {
         if (WaveController.instance.waveNumber == 2 || WaveController.instance.waveNumber == 4) {
             if (countTimeBtwShoot <= 0) {
-                BulletController.Fire(firePos, true);
+                BulletController.Fire(firePos, WaveController.instance.poolPlayerBullet);
                 countTimeBtwShoot = timeBtwShoot;
             }
             countTimeBtwShoot -= Time.deltaTime;
@@ -99,7 +105,7 @@ public class Player : MonoBehaviour {
     }
 
     void OnTriggerEnter2D(Collider2D collision) {
-        if (collision.tag == "Obstacle") {
+        if (col.IsTouchingLayers(obstacleLayer)) {
             Destroy(this.gameObject);
             GameObject objDeathParticles = Instantiate(deathParticles, transform.position, transform.rotation);
             Destroy(objDeathParticles, 8);

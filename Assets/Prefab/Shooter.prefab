@@ -44,9 +44,9 @@ GameObject:
   - component: {fileID: 5506769262750201618}
   - component: {fileID: 1561116262}
   - component: {fileID: 5038902383259853625}
-  m_Layer: 0
-  m_Name: Enemy Shooter
-  m_TagString: Obstacle
+  m_Layer: 8
+  m_Name: Shooter
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -205,13 +205,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 3
-  speed: 8
   bonus: 10
-  waitTime: 2
-  timeBtwShoot: 1.5
   fadeOutMultiplier: 2
   deathParticles: {fileID: 2867153860470633981, guid: 2433c3222b926ce4da96290f373e9397,
     type: 3}
-  col: {fileID: 5506769262750201613}
   firePos: {fileID: 8418938665640794862}
-  sprite: {fileID: 5506769262750201612}
+  bulletLayer:
+    serializedVersion: 2
+    m_Bits: 1024
+  spr: {fileID: 5506769262750201612}
+  col: {fileID: 5506769262750201613}

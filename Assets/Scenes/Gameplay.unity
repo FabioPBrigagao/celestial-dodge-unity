@@ -294,9 +294,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 440740008}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Destroy Objects
-  m_TagString: Destroy_Object
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -309,12 +309,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 440740007}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 15.03174, y: -5.054482, z: -0.3125}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 555423101}
-  - {fileID: 1608128938}
   - {fileID: 894955111}
+  - {fileID: 1608128938}
   m_Father: {fileID: 1633079174}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -361,9 +361,9 @@ GameObject:
   m_Component:
   - component: {fileID: 555423101}
   - component: {fileID: 555423102}
-  m_Layer: 0
-  m_Name: Destroy Objects_Bottom
-  m_TagString: Destroy_Object
+  m_Layer: 9
+  m_Name: Bottom
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -376,7 +376,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 555423100}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -15.03174, y: -19.945518, z: 0.3125}
+  m_LocalPosition: {x: 0, y: -25, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 440740008}
@@ -662,9 +662,9 @@ GameObject:
   m_Component:
   - component: {fileID: 894955111}
   - component: {fileID: 894955112}
-  m_Layer: 0
-  m_Name: Destroy Objects_Right
-  m_TagString: Destroy_Object
+  m_Layer: 9
+  m_Name: Right
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -677,11 +677,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 894955110}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 4.96826, y: 5.054482, z: 0.3125}
+  m_LocalPosition: {x: 20, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 440740008}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &894955112
 BoxCollider2D:
@@ -816,7 +816,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1314276638}
   m_Layer: 0
-  m_Name: Spawn_Pos_Left
+  m_Name: Left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1077,7 +1077,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1530562099}
   m_Layer: 0
-  m_Name: Spawn_Pos_Right
+  m_Name: Right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1107,9 +1107,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1608128938}
   - component: {fileID: 1608128939}
-  m_Layer: 0
-  m_Name: Destroy Objects_Left
-  m_TagString: Destroy_Object
+  m_Layer: 9
+  m_Name: Left
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1122,11 +1122,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1608128937}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -35.03174, y: 5.054482, z: 0.3125}
+  m_LocalPosition: {x: -20, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 440740008}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &1608128939
 BoxCollider2D:
@@ -1168,7 +1168,7 @@ GameObject:
   - component: {fileID: 1633079175}
   m_Layer: 0
   m_Name: Game Manager
-  m_TagString: Scene Manager
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1186,17 +1186,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   waveDuration: 15
+  waveNumber: 0
   player: {fileID: 839233666}
-  missilePool: {fileID: 1633836453}
-  spawnPositionsArray:
+  poolMissile: {fileID: 1633836453}
+  poolEnemyBullet: {fileID: 786118154}
+  poolPlayerBullet: {fileID: 1170330826}
+  spawn:
   - {fileID: 1682948526}
   - {fileID: 1530562099}
   - {fileID: 1314276638}
-  destroyPositionsArray:
+  destroy:
   - {fileID: 555423101}
-  - {fileID: 1608128938}
   - {fileID: 894955111}
-  waveNumber: 0
+  - {fileID: 1608128938}
 --- !u!4 &1633079174
 Transform:
   m_ObjectHideFlags: 0
@@ -1333,7 +1335,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1682948526}
   m_Layer: 0
-  m_Name: Spawn_Pos_Top
+  m_Name: Top
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

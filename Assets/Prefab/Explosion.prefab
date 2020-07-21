@@ -10,12 +10,12 @@ GameObject:
   m_Component:
   - component: {fileID: 1051807995324264565}
   - component: {fileID: 5109058552820803053}
-  - component: {fileID: 114246005656635888}
   - component: {fileID: 50014532919431960}
   - component: {fileID: 2336104000854643289}
-  m_Layer: 0
+  - component: {fileID: 114246005656635888}
+  m_Layer: 8
   m_Name: Explosion
-  m_TagString: Obstacle
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -28,7 +28,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5810601210977977944}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.73, y: -10.81, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 4.8, y: 5.5, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -82,19 +82,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &114246005656635888
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5810601210977977944}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5b2905ad6aa77804f84280d2f95fa3ce, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  explosionRadius: 1
 --- !u!50 &50014532919431960
 Rigidbody2D:
   serializedVersion: 4
@@ -155,3 +142,16 @@ PolygonCollider2D:
       - {x: 0.45167056, y: 0.028889827}
       - {x: 0.3991106, y: 0.2864343}
       - {x: 0.12618338, y: 0.4848646}
+--- !u!114 &114246005656635888
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5810601210977977944}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b2905ad6aa77804f84280d2f95fa3ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  explosionRadius: 1

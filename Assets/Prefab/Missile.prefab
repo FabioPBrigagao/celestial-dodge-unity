@@ -14,9 +14,9 @@ GameObject:
   - component: {fileID: 1954245752293989199}
   - component: {fileID: 8357617058952040275}
   - component: {fileID: 114750263216301118}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Missile
-  m_TagString: Obstacle
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -29,7 +29,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 639385294432151898}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.08, y: -8.55, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -161,4 +161,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ddb6758898f952945b5584f2fb968d1d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 10
+  deactivateLayer:
+    serializedVersion: 2
+    m_Bits: 512
+  rb: {fileID: 1954245752293989199}
+  col: {fileID: 8357617058952040275}

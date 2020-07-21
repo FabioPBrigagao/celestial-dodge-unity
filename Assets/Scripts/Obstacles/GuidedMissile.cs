@@ -7,16 +7,20 @@ public class GuidedMissile : MonoBehaviour, IDefeatable {
     public int health;
     public int bonus;
     [HideInInspector] public float timer;
-    public SpriteRenderer sprite;
     public ParticleSystem hitParticles;
+    public LayerMask playerLayer;
+    public LayerMask bulletLayer;
+
+    [Header("Cache Components")]
+    public SpriteRenderer spr;
+    public PolygonCollider2D col;
 
     private GameObject player;
     private const float FLASH_TIME_RATE = 20;
 
-    public static GuidedMissile Create(Vector2 position) {
+    public static GameObject Create(Vector2 position) {
         Transform transGuidedMissile = Instantiate(GameAssets.i.guidedMissile, position, Quaternion.identity);
-        GuidedMissile guidedMissile = transGuidedMissile.GetComponent<GuidedMissile>();
-        return guidedMissile;
+        return transGuidedMissile.gameObject;
     }
 
     void Awake() {
@@ -63,19 +67,19 @@ public class GuidedMissile : MonoBehaviour, IDefeatable {
 
     public IEnumerator FlashWhite() {
         while(timer >= 0 ){
-            sprite.material = GameAssets.i.flash;
+            spr.material = GameAssets.i.flash;
             yield return new WaitForSeconds(timer/ FLASH_TIME_RATE);
-            sprite.material = GameAssets.i.defaultSprite;
+            spr.material = GameAssets.i.defaultSprite;
             yield return new WaitForSeconds(timer/ FLASH_TIME_RATE);
         }
     }
 
     public void OnTriggerEnter2D(Collider2D collision) {
-        if (collision.gameObject.tag == "Bullet") {
+        if (col.IsTouchingLayers(bulletLayer)) {
             Damage();
             collision.gameObject.SetActive(false);
         }
-        if (collision.gameObject.tag == "Player") {
+        if (col.IsTouchingLayers(playerLayer)) {
             timer = 0;
         }
     }

@@ -4,11 +4,9 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Destroy_Object
-  - Obstacle
-  - Scene Manager
   - Bullet
   - UI
+  - Obstacle
   layers:
   - Default
   - TransparentFX
@@ -18,10 +16,10 @@ TagManager:
   - UI
   - 
   - 
-  - Top
-  - 
-  - 
-  - 
+  - Obstacle
+  - Deactivate
+  - Bullet
+  - Player
   - 
   - 
   - 

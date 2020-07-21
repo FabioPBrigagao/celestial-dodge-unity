@@ -2,15 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyShooter : MonoBehaviour, IDefeatable {
+public class Shooter : MonoBehaviour, IDefeatable {
 
     public int health;
     public int bonus;
     public float fadeOutMultiplier;
     public ParticleSystem deathParticles;
-    public PolygonCollider2D col;
     public Transform firePos;
-    public SpriteRenderer sprite;
+    public LayerMask bulletLayer;
+
+    [Header("Cache Components")]
+    public SpriteRenderer spr;
+    public PolygonCollider2D col;
 
     private Vector3 currentTargetPos;
     private bool defeated = false;
@@ -23,8 +26,9 @@ public class EnemyShooter : MonoBehaviour, IDefeatable {
     private const float Y_MIN_SPAWN_POS = -10;
     private const float Y_MAX_SPAWN_POS = 10;
 
-    public static Transform Create(Vector2 position) {
-        return Instantiate(GameAssets.i.enemyShooter, position, Quaternion.identity);
+    public static GameObject Create(Vector2 position) {
+        Transform transform = Instantiate(GameAssets.i.enemyShooter, position, Quaternion.identity);
+        return transform.gameObject;
     }
 
     void Awake() {
@@ -55,16 +59,16 @@ public class EnemyShooter : MonoBehaviour, IDefeatable {
 
     void Shoot() {
         if (countTimeBtwShoot < 0 && !defeated) {
-            BulletController.Fire(firePos, false);
+            BulletController.Fire(firePos, WaveController.instance.poolEnemyBullet);
             countTimeBtwShoot = DifficultyController.instance.shooterTimeBtwShoots;
         } else countTimeBtwShoot -= Time.deltaTime;
     }
 
     IEnumerator FadeOut() {
         for (float i = 1f; i >= 0; i -= Time.deltaTime * fadeOutMultiplier) {
-            Color color = sprite.material.color;
+            Color color = spr.material.color;
             color.a = i;
-            sprite.material.color = color;
+            spr.material.color = color;
             yield return null;
         }
         Destroy(gameObject);
@@ -89,9 +93,9 @@ public class EnemyShooter : MonoBehaviour, IDefeatable {
     }
 
     public IEnumerator FlashWhite() {
-        sprite.material = GameAssets.i.flash;
+        spr.material = GameAssets.i.flash;
         yield return new WaitForSeconds(0.1f);
-        sprite.material = GameAssets.i.defaultSprite;
+        spr.material = GameAssets.i.defaultSprite;
     }
 
     public void BonusScoreDisplay() {
@@ -100,7 +104,7 @@ public class EnemyShooter : MonoBehaviour, IDefeatable {
     }
 
     public void OnTriggerEnter2D(Collider2D collision) {
-        if (collision.gameObject.tag == "Bullet") {
+        if (col.IsTouchingLayers(bulletLayer)) {
             Damage();
             collision.gameObject.SetActive(false);
         }

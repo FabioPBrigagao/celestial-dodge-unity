@@ -11,11 +11,11 @@ GameObject:
   - component: {fileID: 6344890488080475244}
   - component: {fileID: 6344890488080475243}
   - component: {fileID: 6344890488080475242}
-  - component: {fileID: 6344890488080475241}
+  - component: {fileID: 3818118623991131535}
   - component: {fileID: 8777892390767637294}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Enemy Bullet
-  m_TagString: Obstacle
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -103,8 +103,8 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!58 &6344890488080475241
-CircleCollider2D:
+--- !u!61 &3818118623991131535
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -116,9 +116,19 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.03567311}
+  m_Offset: {x: 0, y: 0.03}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
   serializedVersion: 2
-  m_Radius: 0.36324888
+  m_Size: {x: 0.4, y: 0.69}
+  m_EdgeRadius: 0
 --- !u!114 &8777892390767637294
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -132,4 +142,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 25
-  lifeTime: 2.25
+  deactivateLayer:
+    serializedVersion: 2
+    m_Bits: 512
+  rb: {fileID: 6344890488080475242}
+  col: {fileID: 3818118623991131535}

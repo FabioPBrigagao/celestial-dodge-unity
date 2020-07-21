@@ -4712,7 +4712,7 @@ GameObject:
   - component: {fileID: 4043424128067029303}
   - component: {fileID: 6304507644542968592}
   - component: {fileID: 2917944478855113130}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Player Spaceship
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -4727,7 +4727,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2917944478855113135}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -12, z: 0}
+  m_LocalPosition: {x: 0, y: -20, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2917944479018023891}
@@ -4870,13 +4870,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74ca71145ff38d94da0fba23040a30c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startPos: 0
   timeBtwShoot: 0.4
   firePos: {fileID: 2917944479018023891}
-  animator: {fileID: 4043424128067029303}
   flyingParticles: {fileID: 2657398900038817767}
   deathParticles: {fileID: 7545132253339642007, guid: 41ce29d8f3d77d14f89c5cc88a9c4f17,
     type: 3}
+  obstacleLayer:
+    serializedVersion: 2
+    m_Bits: 256
+  startPos: 0
+  ani: {fileID: 4043424128067029303}
+  col: {fileID: 6304507644542968592}
   cam: {fileID: 0}
 --- !u!1 &2917944479018023890
 GameObject:

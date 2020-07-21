@@ -13,9 +13,9 @@ GameObject:
   - component: {fileID: 7666695407573412547}
   - component: {fileID: 2553313408946453893}
   - component: {fileID: 114460671257993366}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Guided Missile
-  m_TagString: Obstacle
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -28,7 +28,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 717745574136266850}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.9452524, y: -0.8321947, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -151,9 +151,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 3
-  speed: 10
   bonus: 20
   timer: 5
-  sprite: {fileID: 7653604057213820450}
   hitParticles: {fileID: 5463783632381731986, guid: 7775f54321d9a6b409a67289b5e25c31,
     type: 3}
+  playerLayer:
+    serializedVersion: 2
+    m_Bits: 2048
+  bulletLayer:
+    serializedVersion: 2
+    m_Bits: 1024
+  spr: {fileID: 7653604057213820450}
+  col: {fileID: 2553313408946453893}

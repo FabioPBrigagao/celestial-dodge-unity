@@ -4,9 +4,13 @@ using UnityEngine;
 
 public class Missile : MonoBehaviour {
 
-    private Rigidbody2D rb;
+    public LayerMask deactivateLayer;
 
-    public static void GetFromPool(Vector2 position, ObjectPooling pool) {
+    [Header("Cache Components")]
+    public Rigidbody2D rb;
+    public BoxCollider2D col;
+
+    public static GameObject GetFromPool(Vector2 position, ObjectPooling pool) {
         Quaternion rotation;
         if (position.x < 0) rotation = Quaternion.identity;
         else rotation = Quaternion.Euler(0, 180, 0);
@@ -15,10 +19,7 @@ public class Missile : MonoBehaviour {
         Obj.transform.position = position;
         Obj.transform.rotation = rotation;
         Obj.SetActive(true);
-    }
-
-    void Awake() {
-        rb = gameObject.GetComponent<Rigidbody2D>();
+        return Obj;
     }
 
     void OnEnable() {
@@ -30,6 +31,6 @@ public class Missile : MonoBehaviour {
     }
 
     void OnTriggerEnter2D(Collider2D collision) {
-        if (collision.tag == "Destroy_Object") gameObject.SetActive(false);
+        if (col.IsTouchingLayers(deactivateLayer)) gameObject.SetActive(false);
     }
 }

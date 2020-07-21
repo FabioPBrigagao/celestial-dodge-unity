@@ -7,18 +7,25 @@ public class WaveController : MonoBehaviour {
     public static WaveController instance;
 
     public float waveDuration;
-    public GameObject player;
-    public ObjectPooling missilePool;
-    public Transform[] spawnPositionsArray;
-    public Transform[] destroyPositionsArray;
-
     [HideInInspector] public int waveNumber;
+    public GameObject player;
+
+    [Header("Object Pooling")]
+    public ObjectPooling poolMissile;
+    public ObjectPooling poolEnemyBullet;
+    public ObjectPooling poolPlayerBullet;
+
+    [Header("Position Array")]
+    public Transform[] spawn;
+    public Transform[] destroy;
+
     private int previousWave;
     private int randomAsteroid;
     private float countWaveDuration;
     private float spawnTimer;
     private bool aimPlayer;
-    private GameObject[] obstaclesArray;
+    private int obstacleCount;
+    private List<GameObject> obstaclesList = new List<GameObject>();
     private Vector2 spawnPosition = new Vector2(0, 0);
     private List<int> waveCount = new List<int>();
 
@@ -37,41 +44,37 @@ public class WaveController : MonoBehaviour {
             switch (waveNumber) {
                 case 1:
                     Asteroids();
-                    previousWave = 1;
                     break;
                 case 2:
                     EnemyShooters();
-                    previousWave = 2;
                     break;
                 case 3:
                     Missiles();
-                    previousWave = 3;
                     break;
                 case 4:
                     GuidedMissiles();
-                    previousWave = 4;
                     break;
                 default:
                     break;
             }
-            countWaveDuration -= Time.deltaTime;
+            if(countWaveDuration > 0) countWaveDuration -= Time.deltaTime;
         }
     }
 
     void WaveManager() {
-        obstaclesArray = GameObject.FindGameObjectsWithTag("Obstacle");
-        if (obstaclesArray.Length == 0) {
+        obstacleCount = UtilitiesMethods.CheckEnableList(obstaclesList);
+        if (obstacleCount == 0) {
+            obstaclesList.Clear();
             spawnTimer = 0;
             if (waveCount.Count == TOTAL_NUMBER_OF_WAVES) {
                 waveCount.Clear();
             } else {
+                previousWave = waveNumber;
                 waveNumber = UtilitiesMethods.RandomIntegerException(1, (TOTAL_NUMBER_OF_WAVES + 1), previousWave, waveCount);
                 countWaveDuration = waveDuration;
                 waveCount.Add(waveNumber);
             }
-        } else {
-            countWaveDuration -= Time.deltaTime;
-        }
+        } 
     }
 
     void Asteroids() {
@@ -79,8 +82,9 @@ public class WaveController : MonoBehaviour {
         if (countWaveDuration > 0) {
             if (spawnTimer <= 0) {
                 spawnPosition.x = Random.Range(-ABSOLUTE_X_SPAWN, ABSOLUTE_X_SPAWN);
-                spawnPosition.y = spawnPositionsArray[0].position.y;
-                Asteroid.Create(randomAsteroid, spawnPosition);
+                spawnPosition.y = spawn[0].position.y;
+                GameObject obj_Asteroid = Asteroid.Create(randomAsteroid, spawnPosition);
+                obstaclesList.Add(obj_Asteroid);
                 spawnTimer = DifficultyController.instance.asteroidSpawnRate;
             } else spawnTimer -= Time.deltaTime;
         } else WaveManager();
@@ -90,8 +94,9 @@ public class WaveController : MonoBehaviour {
         if (countWaveDuration > 0) {
             if (spawnTimer <= 0) {
                 spawnPosition.x = Random.Range(-ABSOLUTE_X_SPAWN, ABSOLUTE_X_SPAWN);
-                spawnPosition.y = spawnPositionsArray[0].position.y;
-                EnemyShooter.Create(spawnPosition);
+                spawnPosition.y = spawn[0].position.y;
+                GameObject obj_Shooter = Shooter.Create(spawnPosition);
+                obstaclesList.Add(obj_Shooter);
                 spawnTimer = DifficultyController.instance.shooterSpawnRate;
             } else spawnTimer -= Time.deltaTime;
         } else WaveManager();
@@ -109,9 +114,10 @@ public class WaveController : MonoBehaviour {
                     tempPosY = player.transform.position.y;
                     aimPlayer = false;
                 }
-                spawnPosition.x = spawnPositionsArray[tempPosIndex].position.x;
+                spawnPosition.x = spawn[tempPosIndex].position.x;
                 spawnPosition.y = tempPosY;
-                Missile.GetFromPool(spawnPosition, missilePool);
+                GameObject obj_Missile = Missile.GetFromPool(spawnPosition, poolMissile);
+                obstaclesList.Add(obj_Missile);
                 spawnTimer = DifficultyController.instance.missileSpawnRate;
             } else spawnTimer -= Time.deltaTime;
         } else WaveManager();
@@ -122,14 +128,15 @@ public class WaveController : MonoBehaviour {
             if (spawnTimer <= 0) {
                 int tempPosIndex = Random.Range(0, 3);
                 if (tempPosIndex == 0) {
-                    spawnPosition.y = spawnPositionsArray[tempPosIndex].position.y;
+                    spawnPosition.y = spawn[tempPosIndex].position.y;
                     spawnPosition.x = Random.Range(-ABSOLUTE_X_SPAWN, ABSOLUTE_X_SPAWN);
                 } else {
                     spawnPosition.y = Random.Range(-ABSOLUTE_Y_SPAWN, ABSOLUTE_Y_SPAWN);
-                    spawnPosition.x = spawnPositionsArray[tempPosIndex].position.x;
+                    spawnPosition.x = spawn[tempPosIndex].position.x;
                 }
-                GuidedMissile guidedMissile = GuidedMissile.Create(spawnPosition);
-                spawnTimer = guidedMissile.timer;
+                GameObject Obj_guidedMissile = GuidedMissile.Create(spawnPosition);
+                obstaclesList.Add(Obj_guidedMissile);
+                spawnTimer = DifficultyController.instance.guidedMissileTimer;
             } else spawnTimer -= Time.deltaTime;
         } else WaveManager();
     }
