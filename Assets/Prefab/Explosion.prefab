@@ -155,3 +155,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   explosionRadius: 1
+  spr: {fileID: 5109058552820803053}

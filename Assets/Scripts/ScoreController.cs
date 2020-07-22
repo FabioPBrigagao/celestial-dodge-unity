@@ -16,7 +16,7 @@ public class ScoreController : MonoBehaviour {
     [HideInInspector] public float difficultyRate;
     [HideInInspector] public int bonus;
     private float score;
-    private GameObject player;
+    private Player playerScript;
     private bool gameover = false;
 
     const int SCORE_RATE = 2;
@@ -25,13 +25,13 @@ public class ScoreController : MonoBehaviour {
 
     void Start() {
         highscoreText.text = "HIGHSCORE :  " + PlayerPrefs.GetFloat("Highscore", 0);
-        player = WaveController.instance.player;
+        playerScript = WaveController.instance.playerScript;
     }
 
     void Update() {
-        if (player != null) {
+        if (playerScript.playerActive) {
             CalculateScore();
-        } else if (!gameover) {
+        } else if (!gameover && score > 0) {
             gameover = true;
             CheckHighscoreAndRestart();
         }

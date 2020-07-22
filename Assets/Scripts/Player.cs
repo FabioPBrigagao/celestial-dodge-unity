@@ -7,13 +7,14 @@ public class Player : MonoBehaviour {
     public float timeBtwShoot;
     public Transform firePos;
     public GameObject flyingParticles;
-    public GameObject deathParticles;
+    public ParticleSystem deathParticles;
 
     public LayerMask obstacleLayer;
-    [HideInInspector] public bool startPos = false;
+    [HideInInspector] public bool playerActive = false;
 
     [Header("Cache Components")]
     public Animator ani;
+    public SpriteRenderer spr;
     public PolygonCollider2D col;
     public Camera cam;
 
@@ -38,7 +39,7 @@ public class Player : MonoBehaviour {
     }
 
     void FixedUpdate() {
-        if (startPos == true) {
+        if (playerActive == true) {
             if (SystemInfo.deviceType == DeviceType.Desktop) Mouse();
             if (SystemInfo.deviceType == DeviceType.Handheld) Touch();
         }
@@ -47,7 +48,7 @@ public class Player : MonoBehaviour {
     void StartPosition() {
         ani.SetTrigger(HASH_CODE_STARTGAME_ANIMATOR);
         ani.applyRootMotion = true;
-        startPos = true;
+        playerActive = true;
     }
 
     void Mouse() {
@@ -105,10 +106,11 @@ public class Player : MonoBehaviour {
     }
 
     void OnTriggerEnter2D(Collider2D collision) {
-        if (col.IsTouchingLayers(obstacleLayer)) {
-            Destroy(this.gameObject);
-            GameObject objDeathParticles = Instantiate(deathParticles, transform.position, transform.rotation);
-            Destroy(objDeathParticles, 8);
+        if (col.IsTouchingLayers(obstacleLayer) && playerActive) {
+            spr.enabled = false;
+            flyingParticles.SetActive(false);
+            playerActive = false;
+            deathParticles.Play();
         }
     }
 }

@@ -7,7 +7,7 @@ public class DifficultyController : MonoBehaviour {
 
     public static DifficultyController instance;
 
-    private GameObject player;
+    private Player playerScript;
     
     public float asteroidSpawnRate, init_asteroidSpawnRate, limit_asteroidSpawnRate;
     public float asteroidSpeed, init_asteroidSpeed, limit_asteroidSpeed;
@@ -28,11 +28,11 @@ public class DifficultyController : MonoBehaviour {
     void Awake() => instance = this;
 
     void Start() {
-        player = WaveController.instance.player;
+        playerScript = WaveController.instance.playerScript;
     }
 
     void Update() {
-        if (player != null) Difficulty();
+        if (playerScript.playerActive) Difficulty();
     }
 
     void Difficulty(){

@@ -33,7 +33,7 @@ public class GuidedMissile : MonoBehaviour, IDefeatable {
 
 
     void Awake() {
-        player = WaveController.instance.player;
+        player = WaveController.instance.playerScript.gameObject;
     }
 
     void Update() {
@@ -52,8 +52,7 @@ public class GuidedMissile : MonoBehaviour, IDefeatable {
     public void Damage() {
         health -= 1;
         StartCoroutine(CameraController.current.ShakeCamera(0.1f, 1.5f));
-        ParticleSystem ObjHitParticles = Instantiate(hitParticles, transform.position, transform.rotation, gameObject.transform);
-        Destroy(ObjHitParticles, 4);
+        hitParticles.Play();
         if (health <= 0) {
             timer = 0;
             BonusScoreDisplay();
@@ -62,7 +61,7 @@ public class GuidedMissile : MonoBehaviour, IDefeatable {
 
     public void Destruction() {
         if (timer <= 0 || player == null) {
-            Explosion.Create(transform.position);
+            Explosion.GetFromPool(transform.position, WaveController.instance.poolExplosion);
             StartCoroutine(CameraController.current.ShakeCamera(0.5f, 2f));
             gameObject.SetActive(false);
         } else timer -= Time.deltaTime;

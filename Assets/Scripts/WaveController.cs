@@ -8,7 +8,7 @@ public class WaveController : MonoBehaviour {
 
     public float waveDuration;
     [HideInInspector] public int waveNumber;
-    public GameObject player;
+    public Player playerScript;
 
     [Header("Position Array")]
     public Transform[] spawn;
@@ -19,6 +19,7 @@ public class WaveController : MonoBehaviour {
     public ObjectPooling poolShooter;
     public ObjectPooling poolMissile;
     public ObjectPooling poolGuidedMissile;
+    public ObjectPooling poolExplosion;
     public ObjectPooling poolEnemyBullet;
     public ObjectPooling poolPlayerBullet;
 
@@ -43,7 +44,7 @@ public class WaveController : MonoBehaviour {
     }
 
     void Update() {
-        if (player != null && player.GetComponent<Player>().startPos == true) {
+        if (playerScript.playerActive) {
             switch (waveNumber) {
                 case 1:
                     Asteroids();
@@ -113,8 +114,8 @@ public class WaveController : MonoBehaviour {
                 if (aimPlayer == false) {
                     tempPosY = Random.Range(-ABSOLUTE_Y_SPAWN, ABSOLUTE_Y_SPAWN);
                     aimPlayer = true;
-                } else if (player != null) {
-                    tempPosY = player.transform.position.y;
+                } else{
+                    tempPosY = playerScript.gameObject.transform.position.y;
                     aimPlayer = false;
                 }
                 spawnPosition.x = spawn[tempPosIndex].position.x;

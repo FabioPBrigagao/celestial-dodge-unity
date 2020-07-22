@@ -94,8 +94,7 @@ public class Shooter : MonoBehaviour, IDefeatable {
 
     public void Destruction() {
         col.enabled = false;
-        ParticleSystem obj_DeathParticles = Instantiate(deathParticles, transform.position, transform.rotation);
-        Destroy(obj_DeathParticles, 5f);
+        deathParticles.Play();
         StartCoroutine(FadeOut());
         BonusScoreDisplay();
     }
