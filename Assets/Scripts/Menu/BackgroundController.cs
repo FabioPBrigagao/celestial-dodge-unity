@@ -18,7 +18,7 @@ public class BackgroundController : MonoBehaviour{
     }
 
     void Update(){
-        gameObject.transform.position = new Vector2(gameObject.transform.position.x, gameObject.transform.position.y - speed);
+        gameObject.transform.position = new Vector2(gameObject.transform.position.x, gameObject.transform.position.y - speed * Time.deltaTime);
         if (gameObject.transform.position.y <= resetPos){
             gameObject.transform.position = new Vector2(gameObject.transform.position.x, respawnPos);
         }

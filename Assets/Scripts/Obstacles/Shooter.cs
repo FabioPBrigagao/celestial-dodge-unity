@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Shooter : MonoBehaviour, IDefeatable {
 
-    public int health;
     public int bonus;
     public float fadeOutMultiplier;
     public ParticleSystem deathParticles;
@@ -16,23 +15,32 @@ public class Shooter : MonoBehaviour, IDefeatable {
     public PolygonCollider2D col;
 
     private Vector3 currentTargetPos;
-    private bool defeated = false;
+    private bool defeated;
+    private int init_health;
     private bool arrivedPos;
     private float countWaitTime;
     private float countTimeBtwShoot;
+    private int health;
 
     private const float X_MIN_SPAWN_POS = -6;
     private const float X_MAX_SPAWN_POS = 6;
     private const float Y_MIN_SPAWN_POS = -10;
     private const float Y_MAX_SPAWN_POS = 10;
 
-    public static GameObject Create(Vector2 position) {
-        Transform transform = Instantiate(GameAssets.i.enemyShooter, position, Quaternion.identity);
-        return transform.gameObject;
+    public static GameObject GetFromPool(Vector2 position, ObjectPooling pool) {
+        GameObject Obj = pool.GetObjFromPool();
+        Obj.transform.position = position;
+        Obj.SetActive(true);
+        return Obj;
     }
 
-    void Awake() {
+    void OnEnable() {
         currentTargetPos = UtilitiesMethods.XYRandomVector3(X_MIN_SPAWN_POS, X_MAX_SPAWN_POS, Y_MIN_SPAWN_POS, Y_MAX_SPAWN_POS, transform.position.z);
+        spr.material.color = GameAssets.i.defaultSprite.color;
+        col.enabled = true;
+        countTimeBtwShoot = DifficultyController.instance.shooterTimeBtwShoots;
+        health = DifficultyController.instance.shooterHealth;
+        defeated = false;
     }
 
     void Update() {
@@ -71,7 +79,7 @@ public class Shooter : MonoBehaviour, IDefeatable {
             spr.material.color = color;
             yield return null;
         }
-        Destroy(gameObject);
+        gameObject.SetActive(false);
     }
 
     public void Damage() {

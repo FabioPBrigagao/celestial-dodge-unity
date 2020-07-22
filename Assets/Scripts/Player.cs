@@ -5,10 +5,10 @@ using UnityEngine;
 public class Player : MonoBehaviour {
 
     public float timeBtwShoot;
-    public Transform firePos; 
+    public Transform firePos;
     public GameObject flyingParticles;
     public GameObject deathParticles;
-    
+
     public LayerMask obstacleLayer;
     [HideInInspector] public bool startPos = false;
 

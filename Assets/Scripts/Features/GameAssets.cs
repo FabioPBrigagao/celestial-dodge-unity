@@ -12,11 +12,6 @@ public class GameAssets : MonoBehaviour{
             return instance;
         }
     }
-
-    public Transform enemyShooter;
-    public Transform[] asteroidArray;
-    public Transform missile;
-    public Transform guidedMissile;
     
     public Transform explosion;
     public Transform bonusScore;

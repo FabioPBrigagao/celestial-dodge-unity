@@ -10,14 +10,17 @@ public class WaveController : MonoBehaviour {
     [HideInInspector] public int waveNumber;
     public GameObject player;
 
-    [Header("Object Pooling")]
-    public ObjectPooling poolMissile;
-    public ObjectPooling poolEnemyBullet;
-    public ObjectPooling poolPlayerBullet;
-
     [Header("Position Array")]
     public Transform[] spawn;
     public Transform[] destroy;
+
+    [Header("Object Pooling")]
+    public ObjectPooling[] poolAsteroid;
+    public ObjectPooling poolShooter;
+    public ObjectPooling poolMissile;
+    public ObjectPooling poolGuidedMissile;
+    public ObjectPooling poolEnemyBullet;
+    public ObjectPooling poolPlayerBullet;
 
     private int previousWave;
     private int randomAsteroid;
@@ -78,12 +81,12 @@ public class WaveController : MonoBehaviour {
     }
 
     void Asteroids() {
-        randomAsteroid = Random.Range(0, GameAssets.i.asteroidArray.Length);
         if (countWaveDuration > 0) {
             if (spawnTimer <= 0) {
+                randomAsteroid = Random.Range(0, poolAsteroid.Length);
                 spawnPosition.x = Random.Range(-ABSOLUTE_X_SPAWN, ABSOLUTE_X_SPAWN);
                 spawnPosition.y = spawn[0].position.y;
-                GameObject obj_Asteroid = Asteroid.Create(randomAsteroid, spawnPosition);
+                GameObject obj_Asteroid = Asteroid.GetFromPool(spawnPosition, poolAsteroid[randomAsteroid]);
                 obstaclesList.Add(obj_Asteroid);
                 spawnTimer = DifficultyController.instance.asteroidSpawnRate;
             } else spawnTimer -= Time.deltaTime;
@@ -95,7 +98,7 @@ public class WaveController : MonoBehaviour {
             if (spawnTimer <= 0) {
                 spawnPosition.x = Random.Range(-ABSOLUTE_X_SPAWN, ABSOLUTE_X_SPAWN);
                 spawnPosition.y = spawn[0].position.y;
-                GameObject obj_Shooter = Shooter.Create(spawnPosition);
+                GameObject obj_Shooter = Shooter.GetFromPool(spawnPosition, poolShooter);
                 obstaclesList.Add(obj_Shooter);
                 spawnTimer = DifficultyController.instance.shooterSpawnRate;
             } else spawnTimer -= Time.deltaTime;
@@ -134,7 +137,7 @@ public class WaveController : MonoBehaviour {
                     spawnPosition.y = Random.Range(-ABSOLUTE_Y_SPAWN, ABSOLUTE_Y_SPAWN);
                     spawnPosition.x = spawn[tempPosIndex].position.x;
                 }
-                GameObject Obj_guidedMissile = GuidedMissile.Create(spawnPosition);
+                GameObject Obj_guidedMissile = GuidedMissile.GetFromPool(spawnPosition, poolGuidedMissile);
                 obstaclesList.Add(Obj_guidedMissile);
                 spawnTimer = DifficultyController.instance.guidedMissileTimer;
             } else spawnTimer -= Time.deltaTime;

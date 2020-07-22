@@ -16,12 +16,14 @@ public class DifficultyController : MonoBehaviour {
     public float shooterSpeed, init_ShooterSpeed, limit_ShooterSpeed;
     public float shooterWaitTime, init_ShooterWaitTime, limit_ShooterWaitTime;
     public float shooterTimeBtwShoots, init_ShooterTimeBtwShoots, limit_ShooterTimeBtwShoots;
+    public int shooterHealth;
 
     public float missileSpawnRate, init_MissileSpawnRate, limit_MissileSpawnRate;
     public float missileSpeed, init_MissileSpeed, limit_MissileSpeed;
 
     public float guidedMissileTimer, init_GuidedMissileTimer, limit_GuidedMissileTimer;
     public float guidedMissileSpeed, init_GuidedMissileSpeed, limit_GuidedMissileSpeed;
+    public int guidedMissileHealth;
 
     void Awake() => instance = this;
 

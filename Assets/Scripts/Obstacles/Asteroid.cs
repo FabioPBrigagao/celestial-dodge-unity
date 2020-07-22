@@ -11,14 +11,21 @@ public class Asteroid : MonoBehaviour {
     public PolygonCollider2D col;
 
     private int randomBinaryNum;
+    private float init_PrefabSpeed;
     private const float ROTATION_RATE = 0.3f;
 
-    public static GameObject Create(int asteroidIndex, Vector2 position) {
-        Transform transform = Instantiate(GameAssets.i.asteroidArray[asteroidIndex], position, Quaternion.identity);
-        return transform.gameObject;
+    public static GameObject GetFromPool(Vector2 position, ObjectPooling pool) {
+        GameObject Obj = pool.GetObjFromPool();
+        Obj.transform.position = position;
+        Obj.SetActive(true);
+        return Obj;
     }
 
-    void Start() {
+    void Awake(){
+        init_PrefabSpeed = speed;
+    }
+
+    void OnEnable() {
         SetVelocity();
     }
 
@@ -26,7 +33,7 @@ public class Asteroid : MonoBehaviour {
         randomBinaryNum = Random.Range(0, 2);
         if (randomBinaryNum == 0) {
             speed = DifficultyController.instance.asteroidSpeed;
-        }
+        } else speed = init_PrefabSpeed;
         gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(gameObject.GetComponent<Rigidbody2D>().velocity.x, -1 * speed);
     }
 
@@ -39,7 +46,7 @@ public class Asteroid : MonoBehaviour {
     }
 
     void OnTriggerEnter2D(Collider2D collision) {
-        if (col.IsTouchingLayers(deactivateLayer)) Destroy(gameObject);
+        if (col.IsTouchingLayers(deactivateLayer)) gameObject.SetActive(false);
     }
 }
 

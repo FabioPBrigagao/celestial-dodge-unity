@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class GuidedMissile : MonoBehaviour, IDefeatable {
 
-    public int health;
     public int bonus;
     [HideInInspector] public float timer;
     public ParticleSystem hitParticles;
@@ -16,17 +15,25 @@ public class GuidedMissile : MonoBehaviour, IDefeatable {
     public PolygonCollider2D col;
 
     private GameObject player;
+    private int health;
     private const float FLASH_TIME_RATE = 20;
 
-    public static GameObject Create(Vector2 position) {
-        Transform transGuidedMissile = Instantiate(GameAssets.i.guidedMissile, position, Quaternion.identity);
-        return transGuidedMissile.gameObject;
+    public static GameObject GetFromPool(Vector2 position, ObjectPooling pool) {
+        GameObject Obj = pool.GetObjFromPool();
+        Obj.transform.position = position;
+        Obj.SetActive(true);
+        return Obj;
     }
+
+    void OnEnable() {
+        StartCoroutine(FlashWhite());
+        timer = DifficultyController.instance.guidedMissileTimer;
+        health = DifficultyController.instance.guidedMissileHealth;
+    }
+
 
     void Awake() {
         player = WaveController.instance.player;
-        StartCoroutine(FlashWhite());
-        timer = DifficultyController.instance.guidedMissileTimer;
     }
 
     void Update() {
@@ -57,7 +64,7 @@ public class GuidedMissile : MonoBehaviour, IDefeatable {
         if (timer <= 0 || player == null) {
             Explosion.Create(transform.position);
             StartCoroutine(CameraController.current.ShakeCamera(0.5f, 2f));
-            Destroy(gameObject);
+            gameObject.SetActive(false);
         } else timer -= Time.deltaTime;
     }
 
