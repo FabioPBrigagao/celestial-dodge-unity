@@ -12,11 +12,9 @@ public static class UtilitiesMethods {
             found = false;
             number = Random.Range(min, max);
             for (int i = 0; i < except.Count; i++) {
-                if (except[i] == number && previous != number) {
+                if (except[i] == number || previous == number) {
                     found = true;
-                } else if (previous == number) {
-                    found = true;
-                }
+                } 
             }
             if (found == false) {
                 inList = false;

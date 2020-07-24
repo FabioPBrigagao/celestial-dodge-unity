@@ -29,7 +29,25 @@ public class DifficultyController : MonoBehaviour {
 
     void Start() {
         playerScript = WaveController.instance.playerScript;
+        Setup();
     }
+
+    void Setup(){
+        asteroidSpawnRate = init_asteroidSpawnRate;
+        asteroidSpeed = init_asteroidSpeed;
+
+        shooterSpawnRate = init_ShooterSpawnRate;
+        shooterSpeed = init_ShooterSpeed;
+        shooterWaitTime = init_ShooterWaitTime;
+        shooterTimeBtwShoots = init_ShooterTimeBtwShoots;
+
+        missileSpawnRate = init_MissileSpawnRate;
+        missileSpeed = init_MissileSpeed;
+
+        guidedMissileTimer = init_GuidedMissileTimer;
+        guidedMissileSpeed = init_GuidedMissileSpeed;
+    }
+
 
     void Update() {
         if (playerScript.playerActive) Difficulty();
