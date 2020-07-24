@@ -36,7 +36,7 @@ Note: The game runs on a reference aspect ratio of 9:16. You can switch the buil
 
 ## Unity Version
 
-This repository is a Unity project folder that contains a playable game. The project was developed using Unity 2019.4.4f1
+The project was developed using Unity 2019.4.4f1.
 
 ## Credits
 
