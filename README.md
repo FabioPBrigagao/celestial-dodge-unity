@@ -6,13 +6,13 @@ Celestial Dodge is a retro-style 16-bit infinity runner spaceship game developed
   <img src="https://github.com/FabioPBrigagao/celestial-dodge-unity/blob/master/Screenshots%20and%20Gifs/title_README.png">
 </p>
 
-## Unity Version
+## Play the Game
 
-This repository is a Unity project folder that contains a playable game. The project was developed using Unity 2019.4.4f1
+Access the following link to play the game on your browser: https://fabiopbrigagao.github.io/celestial-dodge-unity/
 
 ## Getting Started
 
-This is a Unity project folder, so the game will run under the Unity editor unless a build of the project is created.
+This repository is a Unity project folder that contains a playable game. To access the game locally, conduct the following steps: 
 
 - Use Unity to open the local clone of this repository
 
@@ -33,6 +33,10 @@ Note: The game runs on a reference aspect ratio of 9:16. You can switch the buil
 <p align="center">
   <img src="https://github.com/FabioPBrigagao/celestial-dodge-unity/blob/master/Screenshots%20and%20Gifs/gameplay_missiles.gif">
 </p>
+
+## Unity Version
+
+This repository is a Unity project folder that contains a playable game. The project was developed using Unity 2019.4.4f1
 
 ## Credits
 
