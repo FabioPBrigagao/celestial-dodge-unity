@@ -15,6 +15,7 @@ public class GuidedMissile : MonoBehaviour, IDefeatable {
     public PolygonCollider2D col;
 
     private GameObject player;
+    private Vector2 direction;
     private int health;
     private const float FLASH_TIME_RATE = 20;
 
@@ -26,9 +27,9 @@ public class GuidedMissile : MonoBehaviour, IDefeatable {
     }
 
     void OnEnable() {
-        StartCoroutine(FlashWhite());
         timer = DifficultyController.instance.guidedMissileTimer;
         health = DifficultyController.instance.guidedMissileHealth;
+        StartCoroutine(FlashWhite());
     }
 
 
@@ -43,7 +44,8 @@ public class GuidedMissile : MonoBehaviour, IDefeatable {
 
     void FollowPlayer() {
         if (player != null) {
-            Vector2 direction = new Vector2(transform.position.x - player.transform.position.x, transform.position.y - player.transform.position.y);
+            direction.x = transform.position.x - player.transform.position.x;
+            direction.y = transform.position.y - player.transform.position.y;
             transform.up = direction;
             transform.position = Vector2.MoveTowards(transform.position, player.transform.position, DifficultyController.instance.guidedMissileSpeed * Time.deltaTime);
         }

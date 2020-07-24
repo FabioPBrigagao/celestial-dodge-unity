@@ -96,9 +96,15 @@ public class WaveController : MonoBehaviour {
 
     void EnemyShooters() {
         if (countWaveDuration > 0) {
+            int tempPosIndex = Random.Range(0, 3);
             if (spawnTimer <= 0) {
-                spawnPosition.x = Random.Range(-ABSOLUTE_X_SPAWN, ABSOLUTE_X_SPAWN);
-                spawnPosition.y = spawn[0].position.y;
+                if (tempPosIndex == 0) {
+                    spawnPosition.y = spawn[tempPosIndex].position.y;
+                    spawnPosition.x = Random.Range(-ABSOLUTE_X_SPAWN, ABSOLUTE_X_SPAWN);
+                } else {
+                    spawnPosition.y = Random.Range(-ABSOLUTE_Y_SPAWN, ABSOLUTE_Y_SPAWN);
+                    spawnPosition.x = spawn[tempPosIndex].position.x;
+                }
                 GameObject obj_Shooter = Shooter.GetFromPool(spawnPosition, poolShooter);
                 obstaclesList.Add(obj_Shooter);
                 spawnTimer = DifficultyController.instance.shooterSpawnRate;
