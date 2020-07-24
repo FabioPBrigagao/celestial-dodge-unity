@@ -8,7 +8,7 @@ Celestial Dodge is a retro-style 16-bit infinity runner spaceship game developed
 
 ## Unity Version
 
-This repository is a Unity project folder that contains a playable game. The project was developed using Unity 2018.4.23f1
+This repository is a Unity project folder that contains a playable game. The project was developed using Unity 2019.4.4f1
 
 ## Getting Started
 
